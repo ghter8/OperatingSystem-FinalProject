@@ -1273,5 +1273,6 @@ int __sys_setsockopt(int fd, int level, int optname, char __user *optval,
 		int optlen);
 
 asmlinkage long sys_mycall(int x);
+asmlinkage long sys_set_tickets(int tickets);
 		
 #endif

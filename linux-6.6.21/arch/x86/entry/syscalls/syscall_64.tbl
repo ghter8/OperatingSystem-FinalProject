@@ -422,3 +422,4 @@
 # not special and are not to be used for x32-specific syscalls.
 
 548 common  mycall      sys_mycall
+549 ommon   set_tickets     sys_set_tickets

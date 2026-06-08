@@ -2915,4 +2915,15 @@ SYSCALL_DEFINE1(mycall, int, x)
     return (long)x * x;
 }
 
+SYSCALL_DEFINE1(set_tickets, int, tickets)
+{
+	if (tickets <= 0) {
+		return -EINVAL; /* 傳入錯誤的彩票數時回傳 Invalid Argument */
+	}
+	
+	current->tickets = tickets;
+	printk(KERN_INFO "[LotterySched] Process %d set its tickets to %d\n", current->pid, tickets);
+	return 0;
+}
+
 #endif /* CONFIG_COMPAT */
