@@ -741,9 +741,6 @@ struct kmap_ctrl {
 };
 
 struct task_struct {
-
-	int tickets; /* Custom Lottery Scheduling Tickets */
-
 #ifdef CONFIG_THREAD_INFO_IN_TASK
 	/*
 	 * For reasons of header soup (see current_thread_info()), this
@@ -969,6 +966,8 @@ struct task_struct {
 
 	pid_t				pid;
 	pid_t				tgid;
+
+	int tickets; /* Custom Lottery Scheduling Tickets */
 
 #ifdef CONFIG_STACKPROTECTOR
 	/* Canary value for the -fstack-protector GCC feature: */

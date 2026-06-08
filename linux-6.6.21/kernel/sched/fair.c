@@ -317,7 +317,13 @@ static inline u64 calc_delta_fair(u64 delta, struct sched_entity *se)
 	if (entity_is_task(se)) {
 		struct task_struct *p = task_of(se);
 		if (p->tickets > 0) {
-			delta = (delta * 100) / p->tickets;
+			u64 new_delta = (delta * 100) / p->tickets;
+			
+			// 防禦機制：避免整數除法無條件捨去導致 delta 變成 0
+			if (new_delta == 0 && delta > 0) {
+				new_delta = 1;
+			}
+			delta = new_delta;
 		}
 	}
 
