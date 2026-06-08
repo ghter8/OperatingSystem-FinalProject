@@ -2908,4 +2908,11 @@ COMPAT_SYSCALL_DEFINE1(sysinfo, struct compat_sysinfo __user *, info)
 		return -EFAULT;
 	return 0;
 }
+
+SYSCALL_DEFINE1(mycall, int, x)
+{
+    printk(KERN_INFO "[MySyscall] User passed x = %d\n", x);
+    return (long)x * x;
+}
+
 #endif /* CONFIG_COMPAT */
