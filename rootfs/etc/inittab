@@ -1,0 +1,2 @@
+::sysinit:/init
+::askfirst:-/bin/sh
