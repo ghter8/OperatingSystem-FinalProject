@@ -3,7 +3,7 @@
 #include <sys/syscall.h>
 
 // 定義你剛剛在核心設定的系統呼叫號碼
-#define SYS_mycall 548
+#define SYS_mycall 454
 
 int main() {
     int test_val = 12;

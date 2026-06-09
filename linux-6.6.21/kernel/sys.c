@@ -2918,6 +2918,7 @@ SYSCALL_DEFINE1(mycall, int, x)
 SYSCALL_DEFINE1(set_tickets, int, tickets)
 {
 	if (tickets <= 0) {
+		printk(KERN_INFO "num = %d\n", tickets);
 		return -EINVAL; /* 傳入錯誤的彩票數時回傳 Invalid Argument */
 	}
 	

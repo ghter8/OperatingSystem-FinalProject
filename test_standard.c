@@ -26,6 +26,7 @@ void do_cpu_bound_work(const char* name) {
 int main() {
     printf("=========================================\n");
     printf(" 開始執行彩票排程基準測試 (Lottery Benchmark) \n");
+    printf(" 利用相等的彩票量，以模擬標準原生系統的相等權重\n");
     printf("=========================================\n");
 
     pid_t pid = fork();
@@ -35,13 +36,13 @@ int main() {
         return 1;
     } else if (pid == 0) {
         // 子進程：分配較多彩票 (300 張)
-        if (syscall(SYS_set_tickets, 300) < 0) {
+        if (syscall(SYS_set_tickets, 100) < 0) {
             perror("子進程設定彩票失敗");
         }
         
         // 稍微等待親進程，確保兩者幾乎同時開始競爭 CPU
         usleep(100000); 
-        do_cpu_bound_work("子進程 - 300張彩票");
+        do_cpu_bound_work("子進程 - 100張彩票");
         exit(0);
     } else {
         // 親進程：分配預設/較少彩票 (100 張)
